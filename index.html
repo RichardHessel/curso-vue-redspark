@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+    <div id="app" @mousemove="setCoordinates">
+        <!-- <input type="text" v-on:input="changeMessage($event)" /> -->
+
+        <input type="text" v-model.trim="message" />  <!-- two way data binding -->
+        <input type="text" :value="message" @input="changeMessage" @keyup.enter.space="showAlert" /> <!-- single way data binding -->
+        <p v-once>{{ message }}</p>
+        <p>{{ greeting() }}</p>
+        <!-- <a v-bind:href="url">Universidade Redspark</a> -->
+        <a :href="url">Universidade Redspark</a>
+        <span v-html="html"></span>
+
+        <span>
+            Coordinates: [X]={{ coordinates.x }} [Y]={{ coordinates.y }}
+        </span>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                message: '  Começando com VueJS',
+                url: 'http://dmz.redspark.io/universidade',
+                html: '<p>Acesse agora!</p>',
+                coordinates: {
+                    x: 0,
+                    y: 0
+                }
+            },
+            methods: {
+                changeMessage: function (event) {
+                    this.message = event.target.value
+                },
+                greeting: function () {
+                    return this.message
+                },
+                setCoordinates: function (event) {
+                    this.coordinates.x = event.clientX
+                    this.coordinates.y = event.clientY
+                },
+                showAlert: function () {
+                    alert('teste');
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
