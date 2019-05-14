@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>VueJS</title>
+
+  <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+  <div id="app">
+      <div v-show="show">
+          <p>{{ reverseString(message) }}</p>
+          <p>{{ invertedMessage }}</p>
+      </div>
+    <button type="button" @click="toggleShow">Mostrar / Esconder</button>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data:{
+        message: 'TESTE',
+        show: true
+      },
+      methods: {
+        toggleShow() {
+            this.show = !this.show;
+        },
+        reverseString(string) {
+            console.log('alterado na função')
+          return string.split('').reverse().join('')
+        }
+      },
+      computed: {
+        invertedMessage() {
+            console.log('alterado na computed property')
+          return this.message.split('').reverse().join('')
+        }
+      },
+      watch: {
+          show(newValue, oldValue) {
+              console.log(`Valor Novo: ${newValue} | Valor Antigo: ${oldValue}`)
+              
+              setTimeout(() => {
+                  this.message = 'Alterado via watcher'
+              }, 2000)
+          }
+      }
+    })
+  </script>
+</body>
+</html>

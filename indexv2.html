@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div v-for="(language, index) in languages">
+            <p>{{ index }} - {{ language }}</p>
+        </div>
+
+        <div v-for="(value, key ) in game">
+            <p>{{key}} - {{ value }}</p>
+        </div>
+
+        <template v-for="number in 12"> <!-- renderiza os itens que estão abaixo dele, alternativa a fazer v-for em uma div pq a div é um elemento em bloco já o template é ignorado na renderização -->
+            <span>{{ number }}</span>
+            <span> | </span>
+        </template>
+
+        <p v-show="show">{{ message }}</p> <!-- Coloca display: none -->
+        <p v-if="show">{{ message }}</p> <!-- remove do DOM -->
+        <p v-else>Conteudo Alternativo</p>
+        <!-- deve ser o próximo elemento após o v-if -->
+        <button type="button" @click="toggleShow">Mostrar / Esconder</button>
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                show: true,
+                message: 'Avançado com VueJS',
+                languages: [
+                    'Javascript',
+                    'Python',
+                    'Elixir'
+                ],
+                game: {
+                    id: 1,
+                    title: 'Super Mario World',
+                    releaseYear: 1994
+                }
+            },
+            methods: {
+                toggleShow: function () {
+                    this.show = !this.show;
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
