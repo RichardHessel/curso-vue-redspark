@@ -1,0 +1,28 @@
+// MARGIN
+$margin: 10px;
+
+// PADDING
+$padding: 10px;
+
+// BORDER
+$borderSize: 1px;
+$borderRadius: 10px;
+
+// SIZES
+$buttonHeight: 56px;
+$buttonSmallHeight: 40px;
+$buttonFontSize: 20px;
+
+$cardWidth: 350px;
+$cardHeight: 250px;
+$cardSpacing: 20px;
+
+// COLORS
+$primaryColor: #FED93A;
+$highlightColor: #FC4B38;
+$secondaryColor: #CCCCCC;
+
+// EXTRA COLORS
+$borderColor: darken($secondaryColor, 10%);
+$darkMidGray: #535353;
+$darkDeepGray: #333333;
