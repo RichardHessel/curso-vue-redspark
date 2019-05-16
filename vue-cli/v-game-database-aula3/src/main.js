@@ -17,6 +17,9 @@ import './config/axios'
 // MODULES
 import './config/modules'
 
+// //FILTERS
+// import '@/modules/shared/filters/as-integer.filter'
+
 // CONFIG
 Vue.config.productionTip = false
 

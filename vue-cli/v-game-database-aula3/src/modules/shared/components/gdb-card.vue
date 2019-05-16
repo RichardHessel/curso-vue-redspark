@@ -1,18 +1,35 @@
 <template>
   <div class="gdb-card">
-    <div class="gdb-card-image" :style="{backgroundImage: `url(${imageSrc})` }">
-      <div class="gdb-card-info">{{ name }}</div>
+    <div class="gdb-card-image">
+      <gdb-image :src="imageSrc"/>
+      <div class="gdb-card-info">
+        <gdb-rating :rating="rating | asInteger"/>
+        {{ name }}
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import asInteger from '@/modules/shared/filters/as-integer.filter';
+import GdbImage from "@/modules/shared/components/gdb-image.vue";
+import GdbRating from "@/modules/shared/components/gdb-rating.vue";
+
 export default {
+  components: {
+    "gdb-rating": GdbRating,
+    "gdb-image": GdbImage
+  },
+  filters:{
+    asInteger
+  },
   data() {
     return {
-      imageSrc:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ069PJGtU_Rz6eAdvhcg7d9vDySDumWUcNXxWAjhQMZt-roFcK",
-      name: "Thanos apareceu por aqui"
+      imageSrc: `${
+        process.env.VUE_APP_IGDB_IMAGE_BASE_URL
+      }/t_cover_big_2x/co1izz.jpg`,
+      name: "Thanos apareceu por aqui",
+      rating: 82.57
     };
   }
 };
