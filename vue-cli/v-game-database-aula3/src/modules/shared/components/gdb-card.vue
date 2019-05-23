@@ -1,17 +1,17 @@
 <template>
   <div class="gdb-card">
     <div class="gdb-card-image">
-      <gdb-image :src="imageSrc"/>
-      <div class="gdb-card-info">
-        <gdb-rating :rating="rating | asInteger"/>
-        {{ name }}
-      </div>
+      <gdb-image :src="game.cover_path"/>
+    </div>
+    <div class="gdb-card-info">
+        <gdb-rating :rating="game.rating" />
+        {{ game.name }}
     </div>
   </div>
 </template>
 
 <script>
-import asInteger from '@/modules/shared/filters/as-integer.filter';
+import Game from '@/modules/games/models/game.model'
 import GdbImage from "@/modules/shared/components/gdb-image.vue";
 import GdbRating from "@/modules/shared/components/gdb-rating.vue";
 
@@ -20,17 +20,8 @@ export default {
     "gdb-rating": GdbRating,
     "gdb-image": GdbImage
   },
-  filters:{
-    asInteger
-  },
-  data() {
-    return {
-      imageSrc: `${
-        process.env.VUE_APP_IGDB_IMAGE_BASE_URL
-      }/t_cover_big_2x/co1izz.jpg`,
-      name: "Thanos apareceu por aqui",
-      rating: 82.57
-    };
+  props: {
+    game: { type: Game, required: true }
   }
 };
 </script>
